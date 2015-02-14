@@ -1,6 +1,7 @@
-var canvas = document.getElementsByTagName("canvas")[0],
-    ctx    = canvas.getContext("2d"),
-    gif    = new GIFEncoder();
+var canvas  = document.getElementsByTagName("canvas")[0],
+    wrapper = document.getElementById("canvaswrapper"),
+    ctx     = canvas.getContext("2d"),
+    gif     = new GIFEncoder();
 
 var W = 16, H = 16;
 
@@ -13,15 +14,21 @@ ctx.imageSmoothingEnabled = false;
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, W, H);
 
-var mx, my, imgData = ctx.getImageData(0, 0, W, H);
+var mx, my, imgData = ctx.getImageData(0, 0, W, H), currentFrame = 0;
 
-canvas.addEventListener("mousemove", function(e) {
+wrapper.addEventListener("mousemove", function(e) {
   mx = Math.round((e.offsetX - 5) / 40);
   my = Math.round((e.offsetY - 5) / 40);
 });
 
-canvas.addEventListener("click", function(e) {
-  ctx.fillStyle = "black";
+wrapper.addEventListener("mouseout", function() {
+  mx = -1;
+  my = -1;
+});
+
+wrapper.addEventListener("click", function(e) {
+  ctx.globalAlpha = 1.0;
+  ctx.fillStyle = "rgba(0, 0, 0, 1)";
   ctx.fillRect(mx, my, 1, 1);
   imgData = ctx.getImageData(0, 0, W, H);
   gif.addFrame(canvas);
@@ -29,9 +36,12 @@ canvas.addEventListener("click", function(e) {
 
 document.getElementById("addFrame").addEventListener("click", function(e) {
     var img = new Image();
+    img.id = "frame" + currentFrame;
+    img.className = "frame";
     img.src = canvas.toDataURL("image/png");
     gif.addFrame(ctx);
-    document.body.appendChild(img);
+    currentFrame++;
+    wrapper.insertBefore(img, canvas);
 
     // Clear
 
@@ -49,6 +59,12 @@ document.getElementById("export").addEventListener("click", function(e) {
 
 function render() {
   ctx.putImageData(imgData, 0, 0);
+  /*
+  if(currentFrame > 0) {
+    ctx.globalAlpha = 0.5;
+    ctx.drawImage(document.getElementById("frame" + (currentFrame - 1)), 0, 0);
+    ctx.globalAlpha = 1.0;
+  }*/
   ctx.fillRect(mx, my, 1, 1);
   requestAnimationFrame(render);
 }
