@@ -1,7 +1,8 @@
 var canvas  = document.getElementsByTagName("canvas")[0],
     wrapper = document.getElementById("canvaswrapper"),
     ctx     = canvas.getContext("2d"),
-    gif     = new GIFEncoder();
+    gif     = new GIFEncoder(),
+    color   = document.getElementById("currentColor");
 
 var W = 16, H = 16;
 
@@ -28,7 +29,7 @@ wrapper.addEventListener("mouseout", function() {
 
 wrapper.addEventListener("click", function(e) {
   ctx.globalAlpha = 1.0;
-  ctx.fillStyle = "rgba(0, 0, 0, 1)";
+  ctx.fillStyle = color.value;
   ctx.fillRect(mx, my, 1, 1);
   imgData = ctx.getImageData(0, 0, W, H);
   gif.addFrame(canvas);
