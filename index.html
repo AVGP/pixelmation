@@ -3,16 +3,8 @@
   <head>
     <title>Pixelmation - make animated GIFs in the browser</title>
     <style>
-/*        img {
-            z-index: 1;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }*/
-        canvas {
-            z-index: 10;
-            border: 1px solid black;
-            width: 640px;
+        canvas, img {
+            width:  640px;
             height: 640px;
 
             image-rendering: optimizeSpeed;
@@ -22,19 +14,49 @@
             image-rendering: pixelated;
             -ms-interpolation-mode: nearest-neighbor;
         }
+
+        img.frame {
+            position: absolute;
+            top:  0;
+            left: 0;
+        }
+
+        canvas {
+            position: absolute;
+            top:  0;
+            left: 0;
+
+            opacity: 0.8;
+        }
+
+        #canvaswrapper {
+            position: relative;
+            border: 1px solid black;
+            width: 640px;
+            height: 640px;
+            display: inline-block;
+        }
+
+        #output {
+            margin-left: 10px;
+        }
     </style>
   </head>
   <body>
-      <canvas width="16" height="16"></canvas>
-      <img id="output" width="640" height="640">
-
+    <section id="toolbar">
       <button id="addFrame">New Frame</button>
       <button id="export">Export GIF</button>
+    </section>
 
-      <script src="vendor/b64.js"></script>
-      <script src="vendor/LZWEncoder.js"></script>
-      <script src="vendor/NeuQuant.js"></script>
-      <script src="vendor/GIFEncoder.js"></script>
-      <script src="app.js"></script>
+    <div id="canvaswrapper">
+      <canvas width="16" height="16"></canvas>
+    </div>
+    <img id="output" width="640" height="640">
+
+    <script src="vendor/b64.js"></script>
+    <script src="vendor/LZWEncoder.js"></script>
+    <script src="vendor/NeuQuant.js"></script>
+    <script src="vendor/GIFEncoder.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
