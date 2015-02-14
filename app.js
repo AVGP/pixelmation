@@ -60,12 +60,6 @@ document.getElementById("export").addEventListener("click", function(e) {
 
 function render() {
   ctx.putImageData(imgData, 0, 0);
-  /*
-  if(currentFrame > 0) {
-    ctx.globalAlpha = 0.5;
-    ctx.drawImage(document.getElementById("frame" + (currentFrame - 1)), 0, 0);
-    ctx.globalAlpha = 1.0;
-  }*/
   ctx.fillRect(mx, my, 1, 1);
   requestAnimationFrame(render);
 }
