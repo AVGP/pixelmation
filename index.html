@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pixelmation - make animated GIFs in the browser</title>
+    <style>
+/*        img {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }*/
+        canvas {
+            z-index: 10;
+            border: 1px solid black;
+            width: 640px;
+            height: 640px;
+
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: -o-crisp-edges;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+        }
+    </style>
+  </head>
+  <body>
+      <canvas width="16" height="16"></canvas>
+      <img id="output" width="640" height="640">
+
+      <button id="addFrame">New Frame</button>
+      <button id="export">Export GIF</button>
+
+      <script src="vendor/b64.js"></script>
+      <script src="vendor/LZWEncoder.js"></script>
+      <script src="vendor/NeuQuant.js"></script>
+      <script src="vendor/GIFEncoder.js"></script>
+      <script src="app.js"></script>
+  </body>
+</html>
