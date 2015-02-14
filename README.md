@@ -11,9 +11,24 @@
 ## Make animated pixel art GIFs in your browser
 
 ## What's this?
+This project allows you to create animated pixel art on a 16x16 pixel canvas and export it as an animated GIF.
+A resulting GIF may look like this:
+
+![Stupid pixel gif](http://i.imgur.com/s4euaQc.gif)
 
 ## How does it work?
+You may draw pixels onto a `<canvas>` element and save them as a frame in the [GIF encoder](https://github.com/antimatter15/jsgif).
+The frame is then reset and you can draw a new frame.
+
+When you're done, hit "Encode" and you'll get your animated GIF :)
+
+Have fun pixeling!
 
 ## Contributing
 
+If you have any issues, ideas, wishes or wrote some code that you think would improve this, don't hesitate to create an issue or a pull request.
+For larger pull requests, however, I suggest to start an issue first and discuss your idea first.
+
 ## License
+
+MIT license.
