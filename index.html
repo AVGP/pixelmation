@@ -44,15 +44,14 @@
   </head>
   <body>
     <section id="toolbar">
-      <input id="currentColor" type="color" pattern="#[a-f0-9]{6}" placeholder="#000000" title="Hex value of the color (#rrggbb)">
+      <input id="currentColor" type="color" value="#000000" pattern="#[a-f0-9]{6}" placeholder="#000000" title="Hex value of the color (#rrggbb)">
       <button id="addFrame">New Frame</button>
       <button id="export">Export GIF</button>
     </section>
 
     <div id="canvaswrapper">
-      <canvas width="16" height="16"></canvas>
+      <canvas width="32" height="32"></canvas>
     </div>
-    <img id="output" width="640" height="640">
 
     <script src="vendor/b64.js"></script>
     <script src="vendor/LZWEncoder.js"></script>
